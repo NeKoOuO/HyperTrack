@@ -1,0 +1,32 @@
+# HyperTrack 依賴清單
+# 安裝指令：pip install -r requirements.txt
+
+# ===== 交易所 SDK =====
+# Hyperliquid Python SDK - 監聽聰明錢包
+hyperliquid-python-sdk
+
+# Lighter Python SDK - 執行跟單交易
+git+https://github.com/elliottech/lighter-python.git
+
+# ===== Telegram Bot =====
+# python-telegram-bot 20.7 版（含 job-queue 功能）
+python-telegram-bot[job-queue]==20.7
+
+# ===== 異步處理 =====
+# httpx - 異步 HTTP 請求（aiohttp 的替代方案，更好的相容性）
+httpx[http2]
+
+# ===== 數據庫 =====
+# psycopg - PostgreSQL 異步驅動（asyncpg 的替代方案，有預編譯版本）
+psycopg[binary,pool]
+
+# SQLAlchemy - ORM 框架（異步版本）
+sqlalchemy[asyncio]>=2.0.23
+
+# ===== 工具庫 =====
+# python-dotenv - 環境變數管理
+python-dotenv==1.0.0
+
+# loguru - 日誌系統
+loguru==0.7.2
+
