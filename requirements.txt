@@ -9,15 +9,15 @@ hyperliquid-python-sdk
 git+https://github.com/elliottech/lighter-python.git
 
 # ===== Telegram Bot =====
-# python-telegram-bot 20.7 版（含 job-queue 功能）
-python-telegram-bot[job-queue]==20.7
+# python-telegram-bot 22.x 版（修復 Python 3.14 相容性）
+python-telegram-bot[job-queue]>=22.0
 
 # ===== 異步處理 =====
-# httpx - 異步 HTTP 請求（aiohttp 的替代方案，更好的相容性）
+# httpx - 異步 HTTP 請求
 httpx[http2]
 
 # ===== 數據庫 =====
-# psycopg - PostgreSQL 異步驅動（asyncpg 的替代方案，有預編譯版本）
+# psycopg - PostgreSQL 異步驅動
 psycopg[binary,pool]
 
 # SQLAlchemy - ORM 框架（異步版本）
@@ -25,8 +25,7 @@ sqlalchemy[asyncio]>=2.0.23
 
 # ===== 工具庫 =====
 # python-dotenv - 環境變數管理
-python-dotenv==1.0.0
+python-dotenv>=1.0.0
 
 # loguru - 日誌系統
-loguru==0.7.2
-
+loguru>=0.7.2

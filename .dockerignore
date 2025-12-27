@@ -1,0 +1,51 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+ENV/
+env/
+*.egg-info/
+.eggs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+
+# 環境變數（敏感資訊）
+.env
+.env.local
+.env.*.local
+
+# 測試
+test_*.py
+tests/
+pytest_cache/
+.coverage
+htmlcov/
+
+# 文檔
+*.md
+!README.md
+memory-bank/
+
+# 日誌
+*.log
+data/logs/
+
+# 其他
+*.db
+*.sqlite
+.DS_Store
+Thumbs.db
+
