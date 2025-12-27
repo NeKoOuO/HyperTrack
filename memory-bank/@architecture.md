@@ -97,13 +97,16 @@ HyperTrack/
 
 ## 核心類別說明
 
-### HyperliquidTracker（待實現）
+### HyperliquidTracker ✅ 已實現
 - **職責**：監聽 Hyperliquid 錢包的持倉變化
+- **檔案**：`core/hyperliquid_tracker.py`
 - **方法**：
-  - `connect()` - 建立 WebSocket 連接
-  - `subscribe(wallet_address)` - 訂閱錢包事件
-  - `on_message(message)` - 處理接收到的消息
-  - `disconnect()` - 斷開連接
+  - `__init__(wallet_addresses, testnet, on_event)` - 初始化
+  - `start()` - 啟動輪詢監聽
+  - `stop()` - 停止監聽
+  - `get_wallet_state(address)` - 獲取錢包狀態
+  - `_detect_changes()` - 檢測倉位變化
+- **依賴**：`core/events.py`（事件類型定義）
 
 ### LighterTrader（待實現）
 - **職責**：在 Lighter 交易所執行交易

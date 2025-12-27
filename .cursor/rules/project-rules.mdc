@@ -32,6 +32,7 @@ alwaysApply: true
 - 完成重大功能里程碑
 
 ## 📦 版本控制規則
+- **前提：僅當一個階段的所有功能皆能成功運作、測試通過時，才可進行版本上傳與提交**
 - **每完成一個階段**，必須執行 `git add . && git commit && git push`
 - Commit 訊息格式：`階段 X.X 完成：簡短描述` 訊息使用英文
 - 範例：`Stage 1 completed: Database design and CRUD test passed`
