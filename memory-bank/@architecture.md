@@ -1,7 +1,7 @@
 # 系統架構文檔
 
-> 最後更新：2024-12-26
-> 當前階段：階段 0 - 環境準備
+> 最後更新：2024-12-27
+> 當前階段：階段 4 - 策略引擎（已完成）
 
 ## 專案概述
 
@@ -108,21 +108,36 @@ HyperTrack/
   - `_detect_changes()` - 檢測倉位變化
 - **依賴**：`core/events.py`（事件類型定義）
 
-### LighterTrader（待實現）
+### LighterTrader ✅ 已實現
 - **職責**：在 Lighter 交易所執行交易
+- **檔案**：`core/lighter_trader.py`
 - **方法**：
+  - `__init__(api_private_key, account_index, api_key_index, testnet)` - 初始化
+  - `get_account_info()` - 獲取帳戶資訊
   - `get_balance()` - 查詢可用餘額
   - `get_positions()` - 查詢當前持倉
-  - `place_market_order(symbol, side, size)` - 下市價單
-  - `close_position(symbol)` - 平倉
+  - `get_market_price(symbol)` - 獲取市場價格
+  - `place_market_order(symbol, side, size, reduce_only, max_slippage)` - 下市價單
+  - `close_position(symbol)` - 平倉指定交易對
+  - `close_all_positions()` - 平倉所有持倉
+  - `close()` - 關閉客戶端連接
+- **依賴**：`lighter-sdk` (SignerClient, AccountApi, OrderApi)
+- **配置**：需要 API 私鑰、帳戶索引、API 密鑰索引
 
-### StrategyEngine（待實現）
+### StrategyEngine ✅ 已實現
 - **職責**：處理跟單決策邏輯
+- **檔案**：`core/strategy_engine.py`
 - **方法**：
-  - `on_wallet_event(event)` - 處理錢包事件
-  - `calculate_follow_size(event)` - 計算跟單數量
-  - `check_position_lock(symbol)` - 檢查交易對鎖定
-  - `should_follow(event)` - 判斷是否跟單
+  - `__init__(db_manager, lighter_trader, default_max_position_usd, default_stop_loss_ratio)` - 初始化
+  - `on_wallet_event(event)` - 處理錢包事件入口
+  - `should_follow(event)` - 判斷是否跟單（檢查錢包啟用、交易對鎖定、餘額）
+  - `check_position_lock(symbol, wallet_address)` - 檢查交易對鎖定
+  - `calculate_follow_params(event)` - 計算跟單參數（數量和方向）
+  - `calculate_follow_size(event)` - 計算跟單金額
+  - `execute_follow(event, follow_size, follow_side)` - 執行跟單交易
+  - `check_stop_loss(symbol)` - 檢查是否需要止損
+  - `force_stop_loss(symbol)` - 強制止損平倉
+- **依賴**：`DatabaseManager`, `LighterTrader`, `core.events`
 
 ### DatabaseManager（待實現）
 - **職責**：管理資料庫操作
@@ -161,6 +176,8 @@ HyperTrack/
 
 | 日期 | 更新內容 |
 |------|----------|
+| 2024-12-27 | 完成 StrategyEngine 策略引擎實現 |
+| 2024-12-27 | 完成 LighterTrader 類別實現 |
 | 2024-12-27 | 完成環境設定，調整部分依賴套件 |
 | 2024-12-26 | 初始化架構文檔，定義模組結構和資料庫結構 |
 
